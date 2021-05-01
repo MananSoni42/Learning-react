@@ -1,14 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Pet from "./Pet"
+import Pet from "./Pet";
+import SearchParams from "./SearchParams";
 
 const App = () => {
     return (
-        <div>
+        <div className="center">
             <h1>World of Dogs</h1>
-            <h2><Pet h="Luna" sh1="dog" sh2="Havanese"/></h2>
-            <h2><Pet h="Anna" sh1="dog" sh2="other"/></h2>
-            <h2><Pet h="Harry" sh1="dog" sh2="yet another"/></h2>
+            <SearchParams/>
         </div>
     );
 };
