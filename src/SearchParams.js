@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import pet, { ANIMALS } from "@frontendmasters/pet";
 import useDropdown from "./Dropdown";
 import Results from "./Results";
+import ThemeContext from "./ThemeContext";
 
 const SearchParams = () => {
+  const [theme, setTheme] = useContext(ThemeContext);
+
   const [location, setLocation] = useState("Seattle, WA");
   const [breeds, setBreeds] = useState([]);
   const [pets, setPets] = useState([]);
@@ -54,7 +57,25 @@ const SearchParams = () => {
         </label>
         <AnimalDropdown />
         <BreedDropdown />
-        <button>Submit</button>
+        <label htmlFor="theme">
+          Theme
+          <select
+            id="theme"
+            onClick={(e) => setTheme(JSON.parse(e.target.value))}
+          >
+            <option value={JSON.stringify({ bg: "white", txt: "darkgray" })}>
+              {" "}
+              Light{" "}
+            </option>
+            <option value={JSON.stringify({ bg: "darkgray", txt: "white" })}>
+              {" "}
+              Dark{" "}
+            </option>
+          </select>
+        </label>
+        <button style={{ backgroundColor: theme.bg, color: theme.txt }}>
+          Submit
+        </button>
       </form>
       <Results pets={pets} />
     </div>
